@@ -3,8 +3,8 @@
 #include <Adafruit_SSD1306.h>
 
 // Configuración de la pantalla OLED
-#define SCREEN_WIDTH 128 // Ancho de la pantalla OLED
-#define SCREEN_HEIGHT 64 // Alto de la pantalla OLED
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
 #define OLED_RESET    -1
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
@@ -18,14 +18,13 @@ int umbral = 500;
 void setup() {
   Serial.begin(9600);
 
-  // Inicializar pines de LEDs
   pinMode(ledRojo, OUTPUT);
   pinMode(ledVerde, OUTPUT);
 
   // Inicializar pantalla OLED
-  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Dirección 0x3C para la mayoría de OLEDs 128x64
+  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { 
     Serial.println(F("Fallo al iniciar SSD1306"));
-    for(;;); // Detener ejecución si falla la pantalla
+    for(;;);
   }
 
   display.clearDisplay();
@@ -51,8 +50,8 @@ void loop() {
   display.print("Humedad: ");
   display.println(lecturaHumedad);
   
-  display.setTextSize(1); // Tamaño de texto
-  display.setCursor(0, 30); // Posición en pantalla
+  display.setTextSize(1);
+  display.setCursor(0, 30);
 
   if (lecturaHumedad > umbral) {
 
